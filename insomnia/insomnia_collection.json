@@ -1,0 +1,605 @@
+type: collection.insomnia.rest/5.0
+name: CryptoHub Backend
+meta:
+  id: wrk_6e1ddfd128ed44888f7ce8e89698c6b3
+  created: 1762444049301
+  modified: 1762444049301
+  description: ""
+collection:
+  - name: 1 - Authentication
+    meta:
+      id: fld_1b5302913abc4b0aa9ee0a8efa7d69fa
+      created: 1762699839509
+      modified: 1762699893482
+      sortKey: -1762699890501
+      description: ""
+    children:
+      - url: http://localhost:5000/api/auth/register
+        name: 1. Register User
+        meta:
+          id: req_0832c585211b45ce9a939a3353eb358c
+          created: 1762444563129
+          modified: 1762700001470
+          isPrivate: false
+          description: ""
+          sortKey: -1762700001447
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "username": "testuser",
+              "email": "test@example.com",
+              "password": "password123",
+              "wallet_address": "0x1234567890abcdef1234567890abcdef12345678"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/auth/login
+        name: 2. Login
+        meta:
+          id: req_251170f153834f87a524e4b213d72b2a
+          created: 1762444928091
+          modified: 1762700009970
+          isPrivate: false
+          description: ""
+          sortKey: -1762700001347
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "email": "admintest@cryptohub.com",
+              "password": "admin123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/auth/me
+        name: 3. Get My Profile
+        meta:
+          id: req_35b6e05f3710440099ca1a1ba3e2c41d
+          created: 1762445464932
+          modified: 1762700028391
+          isPrivate: false
+          description: ""
+          sortKey: -1762700001247
+        method: GET
+        headers:
+          - id: pair_e64d1d778a8c42338a005c711fece405
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTBjYzYxMTQ1ZDlkODhhMTZhM2E2NTgiLCJyb2xlIjoidXNlciIsImlhdCI6MTc2MjQ0NTEzMCwiZXhwIjoxNzYzMDQ5OTMwfQ.uSGm0ApMD6WivnrgRRN2yAFzMOCigugPurWlMmYALrQ
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 2 - Posts
+    meta:
+      id: fld_a316009a0035452ea2f5de52144f3c1e
+      created: 1762699847983
+      modified: 1762699927315
+      sortKey: -1762699887718
+      description: ""
+    children:
+      - url: http://localhost:5000/api/posts
+        name: 4. Get All Posts
+        meta:
+          id: req_15aa0285d8f4405cba5c9b9027e860cf
+          created: 1762511240897
+          modified: 1762700050373
+          isPrivate: false
+          description: ""
+          sortKey: -1762700040214
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/posts
+        name: 5. Create Post
+        meta:
+          id: req_7cdbf8c02c1a465cb18b4373dd107eff
+          created: 1762511369689
+          modified: 1762700048149
+          isPrivate: false
+          description: ""
+          sortKey: -1762700040114
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_4b0191eace894074ac4b97eaefa1d279
+              name: title
+              value: Mi primer post sobre Bitcoin
+              description: ""
+              disabled: false
+              type: text
+              multiline: false
+            - id: pair_7f9f44deeefb4d42be47374e8e4c94e5
+              name: content
+              value: Este es un análisis completo...
+              description: ""
+              disabled: false
+            - id: pair_ea14e3c3d58b489fae4f3720d7041fb6
+              name: category
+              value: análisis
+              description: ""
+              disabled: false
+            - id: pair_de7195b041904561bba104e7e49d5ac7
+              name: image
+              value: "[Selecciona tu JPG]"
+              description: ""
+              disabled: false
+              type: file
+              fileName: C:\Users\User\Desktop\test-uploads\post-image-1.jpg
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - id: pair_149bd49381604b66908fde0bab4591e4
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTBjYzYxMTQ1ZDlkODhhMTZhM2E2NTgiLCJyb2xlIjoidXNlciIsImlhdCI6MTc2MjQ0NTEzMCwiZXhwIjoxNzYzMDQ5OTMwfQ.uSGm0ApMD6WivnrgRRN2yAFzMOCigugPurWlMmYALrQ
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/posts/690dcec0a0407609d76b68f3
+        name: 6. Get Post by ID
+        meta:
+          id: req_fc0ef32b1b9940dab381c1d3169c5ac0
+          created: 1762511856439
+          modified: 1762700066972
+          isPrivate: false
+          description: ""
+          sortKey: -1762700040014
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/posts/690dcec0a0407609d76b68f3/like
+        name: 7. Like Post
+        meta:
+          id: req_08a14b7afb45442b84f1ceab4f1a71e8
+          created: 1762511939178
+          modified: 1762700072538
+          isPrivate: false
+          description: ""
+          sortKey: -1762700039914
+        method: POST
+        headers:
+          - id: pair_47673212f9464566b48df81b2825ea59
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTBjYzYxMTQ1ZDlkODhhMTZhM2E2NTgiLCJyb2xlIjoidXNlciIsImlhdCI6MTc2MjQ0NDgxNywiZXhwIjoxNzYzMDQ5NjE3fQ.jYaHZPoW9XVgKJXiPyjDlx8byLLWdZCGy7E3KapuY8U
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/posts/690dcec0a0407609d76b68f3
+        name: 8. Delete Post
+        meta:
+          id: req_989f6fa4dd644e8981c92d45d877b69a
+          created: 1762512034153
+          modified: 1762700079663
+          isPrivate: false
+          description: ""
+          sortKey: -1762700039814
+        method: DELETE
+        headers:
+          - id: pair_b0854c5bb85c4402ac36895a0e940ef2
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTBjYzYxMTQ1ZDlkODhhMTZhM2E2NTgiLCJyb2xlIjoidXNlciIsImlhdCI6MTc2MjQ0NDgxNywiZXhwIjoxNzYzMDQ5NjE3fQ.jYaHZPoW9XVgKJXiPyjDlx8byLLWdZCGy7E3KapuY8U
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 3 - Comments
+    meta:
+      id: fld_662d3aa9baa5434c82b0264bfdf46b36
+      created: 1762699858654
+      modified: 1762699929442
+      sortKey: -1762699886326.5
+      description: ""
+    children:
+      - url: http://localhost:5000/api/comments?postId=690cb90978a2134fa593fb2a
+        name: 9. Get Comments
+        meta:
+          id: req_da9c06ae24424ee7a32cfe65b7d65334
+          created: 1762614765380
+          modified: 1762700153829
+          isPrivate: false
+          description: ""
+          sortKey: -1762700146019
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/comments
+        name: 10. Create Comment
+        meta:
+          id: req_f4d47b3a4d7f49288f0ada8c3a0fb4bd
+          created: 1762615005127
+          modified: 1762700145943
+          isPrivate: false
+          description: ""
+          sortKey: -1762700145919
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "postId": "690cb90978a2134fa593fb2a",
+              "content": "Excelente análisis sobre meme coins! Muy completo y bien explicado."
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_0c1bd63ca9e54897bc3c5ca489ec07e9
+          - id: pair_c62c787b8ec342e08ab330152c42ea22
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTBjYzYxMTQ1ZDlkODhhMTZhM2E2NTgiLCJyb2xlIjoidXNlciIsImlhdCI6MTc2MjQ0NTEzMCwiZXhwIjoxNzYzMDQ5OTMwfQ.uSGm0ApMD6WivnrgRRN2yAFzMOCigugPurWlMmYALrQ
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/comments/690f5f91a5f61482e9be5443
+        name: 11. Delete Comment
+        meta:
+          id: req_51b05c7aff6d4d2aa04648a78818dea1
+          created: 1762615815604
+          modified: 1762700147841
+          isPrivate: false
+          description: ""
+          sortKey: -1762700145819
+        method: DELETE
+        headers:
+          - id: pair_4433e66fb018414497dd269909d632f2
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTBjYzYxMTQ1ZDlkODhhMTZhM2E2NTgiLCJyb2xlIjoidXNlciIsImlhdCI6MTc2MjQ0NTEzMCwiZXhwIjoxNzYzMDQ5OTMwfQ.uSGm0ApMD6WivnrgRRN2yAFzMOCigugPurWlMmYALrQ
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 4 - Resources
+    meta:
+      id: fld_2b8d514e62564dcfa103076878c0be32
+      created: 1762699884935
+      modified: 1762699884935
+      sortKey: -1762699884935
+      description: ""
+    children:
+      - url: http://localhost:5000/api/resources
+        name: 12. Get All Resources
+        meta:
+          id: req_93b687d2abd94f3ca5bdf997e3b84f4d
+          created: 1762615969081
+          modified: 1762700169406
+          isPrivate: false
+          description: ""
+          sortKey: -1762700167121
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/resources
+        name: 13. Create Resource
+        meta:
+          id: req_e2f7d900df0346338d64f8fcfa34a014
+          created: 1762616086995
+          modified: 1762700167041
+          isPrivate: false
+          description: ""
+          sortKey: -1762700167021
+        method: POST
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_6d0a14dd74f645d7af7292fd33f1ff86
+              name: title
+              value: Guía de Trading para Principiantes
+              description: ""
+              disabled: false
+            - id: pair_1f23298a88db4c5ead8f6d245d331608
+              name: description
+              value: Manual completo sobre estrategias de trading en criptomonedas
+              description: ""
+              disabled: false
+            - id: pair_f8711723fa834ac2975bf1b4a25fee9f
+              name: type
+              value: pdf
+              description: ""
+              disabled: false
+            - id: pair_660d9d0273e745f889d29784d2624946
+              name: category
+              value: trading
+              description: ""
+              disabled: false
+            - id: pair_af508600c1ab4e2183ec9e96d8cadeb2
+              name: file
+              value: ""
+              description: ""
+              disabled: false
+              type: file
+              fileName: C:\Users\User\Desktop\test-uploads\resource-pdf-1.pdf
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+            id: pair_cbfbad7a5853405883f9ce46f4cf0ac3
+          - id: pair_ee5291833f3241f9a94f832fd40e2fa9
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTBjYzYxMTQ1ZDlkODhhMTZhM2E2NTgiLCJyb2xlIjoidXNlciIsImlhdCI6MTc2MjQ0NTEzMCwiZXhwIjoxNzYzMDQ5OTMwfQ.uSGm0ApMD6WivnrgRRN2yAFzMOCigugPurWlMmYALrQ
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/resources/690f63d2a5f61482e9be545c
+        name: 14. Delete Resource
+        meta:
+          id: req_aee2cbff867b4a8791f8fc0ead788ad5
+          created: 1762616434555
+          modified: 1762700172668
+          isPrivate: false
+          description: ""
+          sortKey: -1762700167221
+        method: DELETE
+        headers:
+          - id: pair_488cc51ec7974f28a535e88e9f9c04fd
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTBjYzYxMTQ1ZDlkODhhMTZhM2E2NTgiLCJyb2xlIjoidXNlciIsImlhdCI6MTc2MjQ0NTEzMCwiZXhwIjoxNzYzMDQ5OTMwfQ.uSGm0ApMD6WivnrgRRN2yAFzMOCigugPurWlMmYALrQ
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: 5 - Users
+    meta:
+      id: fld_2340cfb7b3fa4072bab19e5e522c7b4d
+      created: 1762699937909
+      modified: 1762699948599
+      sortKey: -1762605460322
+      description: ""
+    children:
+      - url: http://localhost:5000/api/users/profile
+        name: 15. Get User Profile
+        meta:
+          id: req_6ce242933a2447478b2e63eb362e6585
+          created: 1762621735861
+          modified: 1762700185443
+          isPrivate: false
+          description: ""
+          sortKey: -1762700176194
+        method: GET
+        headers:
+          - id: pair_f5ffdcf864064033bee4de0b0b6bd2f2
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTBjYzYxMTQ1ZDlkODhhMTZhM2E2NTgiLCJyb2xlIjoidXNlciIsImlhdCI6MTc2MjQ0NTEzMCwiZXhwIjoxNzYzMDQ5OTMwfQ.uSGm0ApMD6WivnrgRRN2yAFzMOCigugPurWlMmYALrQ
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/users/profile
+        name: 16. Update Profile
+        meta:
+          id: req_864fbeabeffb4fd6b1e25f412a8a856a
+          created: 1762622543339
+          modified: 1762700189628
+          isPrivate: false
+          description: ""
+          sortKey: -1762700176169
+        method: PUT
+        body:
+          mimeType: multipart/form-data
+          params:
+            - id: pair_e7bc2ce76adf4e859153b015d18245ed
+              name: username
+              value: testuser_updated
+              description: ""
+              disabled: false
+            - id: pair_3bcd617806f6493b8f21b46237ec2855
+              name: wallet_address
+              value: "0xabcdef1234567890abcdef1234567890abcdef12"
+              description: ""
+              disabled: false
+            - id: pair_e3635777f3ef4f819172e7e6dc3cb3b0
+              name: image
+              value: ""
+              description: ""
+              disabled: false
+              type: file
+              fileName: C:\Users\User\Desktop\test-uploads\post-image-2.jpg
+        headers:
+          - name: Content-Type
+            value: multipart/form-data
+          - id: pair_9ea856b5a5d74b2a936812373bf07c4b
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTBjYzYxMTQ1ZDlkODhhMTZhM2E2NTgiLCJyb2xlIjoidXNlciIsImlhdCI6MTc2MjQ0NTEzMCwiZXhwIjoxNzYzMDQ5OTMwfQ.uSGm0ApMD6WivnrgRRN2yAFzMOCigugPurWlMmYALrQ
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/users
+        name: 17. Get All Users (Admin)
+        meta:
+          id: req_b1e7d7ab14e44b9dbee24afce484b5eb
+          created: 1762622727564
+          modified: 1762700187811
+          isPrivate: false
+          description: ""
+          sortKey: -1762700176144
+        method: GET
+        headers:
+          - id: pair_0ba5cce09c4044ee8ab4c2f004bb132f
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTBmN2Q4MzY4M2EwOTY2MmYzODUwMTAiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjI2MjI4OTUsImV4cCI6MTc2MzIyNzY5NX0.726m8MPanXVfL1eG6Zey9pP_Plf1km5gsOImea4Sjl8
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:5000/api/users/690cb90978a2134fa593fafc
+        name: 18. Delete User (Admin)
+        meta:
+          id: req_6bc19d40a4b24bee953a71a8ca9262aa
+          created: 1762622941725
+          modified: 1762700182280
+          isPrivate: false
+          description: ""
+          sortKey: -1762700176094
+        method: DELETE
+        headers:
+          - id: pair_1af06c09ab63442da22d6355213c4dd3
+            name: Authorization
+            value: Bearer
+              eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTBmN2Q4MzY4M2EwOTY2MmYzODUwMTAiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NjI2MjI4OTUsImV4cCI6MTc2MzIyNzY5NX0.726m8MPanXVfL1eG6Zey9pP_Plf1km5gsOImea4Sjl8
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_2a63a0a7ba1778db62bdf994fd143324a01ed0b8
+    created: 1762444049312
+    modified: 1762444049312
+environments:
+  name: Base Environment
+  meta:
+    id: env_2a63a0a7ba1778db62bdf994fd143324a01ed0b8
+    created: 1762444049306
+    modified: 1762444260554
+    isPrivate: false
+  data:
+    Local:
+      base_url: http://localhost:5000
+      token: ""

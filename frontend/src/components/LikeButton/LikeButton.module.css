@@ -1,0 +1,67 @@
+.button{
+  --color-like: #ed6464;
+  --btn-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 6px 8px;
+  border-radius: var(--btn-radius);
+  font-weight: 600;
+  border: 0;
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 120ms ease, transform 80ms ease, color 120ms ease;
+}
+
+.button:hover{
+  background: rgb(0 0 0 / 4%);
+}
+
+.icon{
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  line-height: 0;
+}
+
+.count{
+  font-size: 0.7rem;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+
+.button[aria-pressed="true"]{
+  color: var(--color-like);
+  background: rgb(237 100 166 / 6%);
+}
+
+.pill{
+  border: 1px solid var(--border-color-light);
+  border-radius: 8px;
+  padding: 6px 10px;
+  background: var(--surface-2, rgb(255 255 255 / 4%));
+}
+
+
+@keyframes pop {
+  0% { transform: scale(0.9); }
+  60% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+.button[aria-pressed="true"] .icon{
+  animation: pop 260ms cubic-bezier(.2,.9,.3,1);
+}
+
+.button:focus-visible{
+  outline: 3px solid rgb(246 166 35 / 28%);
+  outline-offset: 2px;
+}
+
+@media (prefers-color-scheme: dark){
+  .button:hover{ background: rgb(255 255 255 / 4%); }
+  .button[aria-pressed="true"]{ background: rgb(237 100 166 / 12%); }
+  .pill{ background: rgb(255 255 255 / 6%); }
+}

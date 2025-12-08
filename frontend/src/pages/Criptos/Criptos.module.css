@@ -1,0 +1,170 @@
+.container {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+.cryptoHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 2px solid rgb(246 166 35 / 30%);
+}
+
+.cryptoHeader h1 {
+  text-align: left;
+  margin-bottom: 0.25rem;
+  font-size: var(--font-size-4xl);
+  color: var(--text-primary);
+  font-family: var(--font-family-mono);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.cryptoHeader p {
+  margin: 0;
+  text-align: left;
+  color: var(--text-tertiary);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+}
+
+.cryptoActions {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btnRefresh {
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-primary);
+  background: var(--color-bg-elevated);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-family: var(--font-family-mono);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  height: 42px;
+}
+
+.btnRefresh:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnRefresh:not(:disabled):hover {
+  background: var(--color-primary);
+  color: var(--text-inverse);
+  transform: translateY(-1px);
+}
+
+.cryptoLastUpdated {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-family-mono);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.cryptoError {
+  background: var(--bg-error);
+  color: var(--text-error);
+  border: 1px solid rgb(220 38 38 / 30%);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.cryptoError button {
+  background: rgb(220 38 38 / 20%);
+  color: var(--text-error);
+  border: 1px solid rgb(220 38 38 / 30%);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background var(--transition-fast);
+}
+
+.cryptoError button:hover {
+  background: rgb(220 38 38 / 30%);
+}
+
+.cryptoLoading,
+.cryptoEmpty {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-top: var(--spacing-xl);
+  font-size: var(--font-size-lg);
+  font-family: var(--font-family-mono);
+}
+
+.cryptoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-xl);
+  margin: var(--spacing-xl) 0;
+}
+
+@media (width <= 768px) {
+  .container {
+    padding: var(--spacing-md);
+  }
+
+  .cryptoActions {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cryptoHeader h1 {
+    font-size: var(--font-size-3xl);
+    letter-spacing: 1px;
+  }
+
+  .cryptoHeader {
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .cryptoHeader h1,
+  .cryptoHeader p {
+    text-align: center;
+  }
+
+  .cryptoLastUpdated {
+    font-size: 0.9rem;
+    gap: var(--spacing-sm);
+  }
+
+  .cryptoGrid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .cryptoActions > * {
+    width: 100%;
+    max-width: 420px;
+  }
+}

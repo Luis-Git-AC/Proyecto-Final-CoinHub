@@ -1,0 +1,166 @@
+:root{
+  --btn-radius: 8px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--btn-radius);
+  font-weight: 600;
+  border: 0;
+  cursor: pointer;
+  transition: background 140ms ease, transform 100ms ease, box-shadow 140ms ease, color 140ms ease;
+  background: transparent;
+  color: inherit;
+  line-height: 1; 
+  vertical-align: middle;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn:focus-visible{
+  outline: 3px solid rgb(246 166 35 / 28%);
+  outline-offset: 2px;
+}
+
+.primary{
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: 0 2px 6px rgb(2 6 23 / 8%);
+}
+.primary:hover{ background: var(--btn-primary-bg-hover); }
+
+
+.cta{
+  background: var(--color-info);
+  color: var(--text-inverse);
+
+  
+  box-shadow: 0 2px 6px rgb(3 102 214 / 8%);
+  border-radius: 6px;
+}
+.cta:hover{ background: #2a66c7; transform: translateY(-1px); }
+
+
+.cta{ min-height: 44px; }
+
+
+.fullWidth{
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+}
+
+
+.btnSpinner{
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgb(255 255 255 / 25%);
+  border-top-color: rgb(255 255 255 / 90%);
+  margin-right: 0.5rem;
+  display: inline-block;
+  vertical-align: middle;
+  animation: spin 900ms linear infinite;
+}
+
+@keyframes spin{
+  to { transform: rotate(360deg); }
+}
+
+.ghost{
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+.ghost:hover{ background: var(--bg-hover); }
+
+.cancel{
+  background: var(--btn-cancel-bg);
+  color: var(--btn-cancel-text);
+  border: 1px solid var(--border-color-light);
+}
+.cancel:hover{
+  background: var(--btn-cancel-bg-hover);
+  color: var(--text-inverse);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 25%);
+  border-color: transparent;
+}
+
+.primary-action{
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+}
+.primary-action:hover{ background: var(--btn-primary-bg-hover); }
+
+.cancel-action{
+  background: var(--btn-cancel-bg);
+  color: var(--btn-cancel-text);
+  border: 1px solid var(--border-color-light);
+}
+.cancel-action:hover{
+  background: var(--btn-cancel-bg-hover);
+  color: var(--text-inverse);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 25%);
+  border-color: transparent;
+}
+
+.danger{
+  background: var(--color-error);
+  color: var(--text-inverse);
+}
+.danger:hover{ background: #b91c1c; }
+
+.like{
+  background: transparent;
+  color: #ED64A6;
+}
+
+.sm{ padding: 0.25rem 0.5rem; font-size: 0.9rem; }
+.md{ padding: 0.5rem 0.9rem; font-size: 1rem; }
+.lg{ padding: 0.75rem 1.25rem; font-size: 1.125rem; }
+
+.icon{ display:inline-flex; width:16px; height:16px; align-items:center; justify-content:center; line-height:1; }
+
+
+.btn svg{ display: block; width: 16px; height: 16px; }
+.icon svg{ transform-origin: center center; }
+
+
+.btn > * {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.btn span {
+  line-height: 1;
+}
+
+
+.iconOnly{
+  padding: 0 !important;
+
+  
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconOnly .icon{ width: 16px; height: 16px; }
+.iconOnly svg{ width: 16px; height: 16px; }
+
+@media (prefers-color-scheme: dark){
+  .ghost:hover{ background: var(--bg-hover); }
+  .primary{ box-shadow: 0 2px 6px rgb(0 0 0 / 60%); }
+}

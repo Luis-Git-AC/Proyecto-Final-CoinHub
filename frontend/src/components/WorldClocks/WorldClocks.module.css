@@ -1,0 +1,102 @@
+.sidebar {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color-light);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  position: sticky;
+  top: var(--spacing-lg);
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-lg);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-md) 0;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid rgb(246 166 35 / 30%);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.clock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-sm);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color-light);
+  transition: all var(--transition-fast);
+}
+
+.clock:hover {
+  background: var(--bg-hover);
+  border-color: rgb(246 166 35 / 35%);
+  transform: translateX(2px);
+}
+
+.clockHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.flag {
+  font-size: var(--font-size-xl);
+  line-height: 1;
+}
+
+.city {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.time {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-2xl);
+  color: var(--text-primary);
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: var(--spacing-xs) 0;
+  background: linear-gradient(135deg, rgb(246 166 35 / 12%), rgb(52 120 229 / 10%));
+  border-radius: var(--radius-sm);
+}
+
+@media (width <= 1024px) {
+  .sidebar {
+    position: static;
+    max-height: none;
+  }
+
+  .list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (width <= 640px) {
+  .list {
+    grid-template-columns: 1fr;
+  }
+
+  .time {
+    font-size: var(--font-size-xl);
+  }
+}

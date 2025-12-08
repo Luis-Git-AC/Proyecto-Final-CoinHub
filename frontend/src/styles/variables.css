@@ -1,0 +1,80 @@
+:root {
+  --color-primary: #f6a623; 
+  --color-primary-dark: #e59417;
+  --color-secondary: #fbbf24;
+
+  --btn-primary-bg: #23eff691 ;
+  --btn-primary-bg-hover: #e59417;
+  --btn-primary-text: var(--text-inverse);
+
+  --btn-cancel-bg: rgba(255, 0, 0, 0.555);
+  --btn-cancel-bg-hover: var(--color-error);
+  --btn-cancel-text: var(--text-primary);
+
+  --bg-primary: #0b0b0b; 
+  --bg-secondary: #0f1115;
+  --bg-tertiary: #171a20;
+  --bg-hover: #1a1d24;
+
+  --bg-light: #e6e9ef;
+  --border-color-on-light: #d7dbe3;
+
+  --text-primary: #f1f5f9;
+  --text-on-light-box: #222;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #fff;
+
+  --border-color: #242731;
+  --border-color-light: #2d3240;
+
+  --color-link: #1d4ed8; 
+  --color-link-visited: #7c3aed; 
+
+  --color-success: #1fb45a; 
+  --color-error: #dc2626; 
+  --color-warning: #d8920a; 
+  --color-info: #3478e5; 
+  --bg-error: rgb(220 38 38 / 12%); 
+  --text-error: #fca5a5; 
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 2px 10px rgb(0 0 0 / 40%);
+  --shadow-md: 0 4px 15px rgb(0 0 0 / 30%);
+  --shadow-lg: 0 10px 25px rgb(0 0 0 / 25%);
+  --shadow-xl: 0 18px 35px rgb(0 0 0 / 30%);
+  --shadow-focus: 0 0 0 3px rgb(246 166 35 / 28%); 
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+  --font-family-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.85rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.1rem;
+  --font-size-xl: 1.2rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.75rem;
+  --font-size-4xl: 2rem;
+  --font-size-5xl: 2.5rem;
+  --max-width-content: 1200px;
+  --max-width-narrow: 800px;
+  --max-width-form: 600px;
+  --z-header: 100;
+  --z-dropdown: 200;
+  --z-modal: 1000;
+
+  --color-bg-card: var(--bg-secondary);
+  --color-bg-elevated: var(--bg-tertiary);
+  --font-mono: var(--font-family-mono);
+}

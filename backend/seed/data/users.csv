@@ -1,0 +1,17 @@
+username,email,password,avatar,wallet_address,role
+admin,admin@cryptohub.com,$2b$10$MvT.ukHEp0lZE3cNiDIKDObsqW/4ZChdvNQu5lc.kEgNoVcwwptje,https://i.pravatar.cc/150?img=1,,admin
+carlos_trader,carlos@gmail.com,$2b$10$CGYksoM/wOGgWd4YTFChd.G4yUgp6uDVsX9/u4.itUJcGF3RcPFt2,https://i.pravatar.cc/150?img=2,0x1234567890abcdef1234567890abcdef12345678,user
+maria_crypto,maria.lopez@hotmail.com,$2b$10$efbsXAC0iaayvswCKVzbYuwyZ4/nduDmlB5m6ENP0NWDME/yYUgV2,https://i.pravatar.cc/150?img=3,,user
+juan_btc,juan.investor@yahoo.com,$2b$10$rwm99.Xjqt43RhiHybfwdeaix/a3XwJO2V9NHz4oUqEWZQMRf50.e,https://i.pravatar.cc/150?img=4,0xabcdef1234567890abcdef1234567890abcdef12,user
+laura_defi,laura.blockchain@email.com,$2b$10$uB.M.YAEmG5hiSYIgU3uPO4OhntRyMsBwpxflQPQXctqPuooEX8Xy,https://i.pravatar.cc/150?img=5,0x9876543210fedcba9876543210fedcba98765432,user
+pedro_eth,pedro.ethereum@outlook.com,$2b$10$GoecnzbF95EK8yMGrTcaFO1R/veTra0i4daymVlM4YFMr2WyWtTh.,https://i.pravatar.cc/150?img=6,,user
+ana_hodler,ana.crypto@email.com,$2b$10$Hm2FEYc7OrJoqWb3zRbaUexfkSoofyJvYdGPHR0s4MLK8SDlyHcP6,https://i.pravatar.cc/150?img=7,0xfedcba0987654321fedcba0987654321fedcba09,user
+sergio_nft,sergio.nft@protonmail.com,$2b$10$AZeTfLGBMjA2X4Ld3zP/cuOY22S9GaIXJnI2sPdiT/gTrWJLSoPCa,https://i.pravatar.cc/150?img=8,,user
+lucia_dao,lucia.descentralizada@email.com,$2b$10$ScFyADONk/CdMrGhfPlaN.YrAMDSWNInY3bSlR7zc2YeUn5ZumSUu,https://i.pravatar.cc/150?img=9,0x1111222233334444555566667777888899990000,user
+miguel_sol,miguel.solana@yahoo.com,$2b$10$Q57GQc9GMn5y4pYx8DoUUuDECxcq/fpXHJtt51Bq0SzTuJ9OzOgFi,https://i.pravatar.cc/150?img=10,,user
+carla_ada,carla.cardano@hotmail.com,$2b$10$CXSb8N2lJsvA8SMgWS6laO1h1xT1GWERHS4PB8WTFiHYzHujI/Hnq,https://i.pravatar.cc/150?img=11,0xaaaa1111bbbb2222cccc3333dddd4444eeee5555,user
+antonio_xrp,antonio.ripple@email.com,$2b$10$px0tTwzIiGmgxb1QnCM4euXa/LIi8QpGOmcP8ZxsmOkgWiB9dSETu,https://i.pravatar.cc/150?img=12,,user
+sofia_dot,sofia.polkadot@outlook.com,$2b$10$bCtXWLsKKRtSu9m9lm540u6jSTXsbyaCLBh44zAwy7WqmWTAeRjb2,https://i.pravatar.cc/150?img=13,0x5555aaaa6666bbbb7777cccc8888dddd9999eeee,user
+raul_doge,raul.dogecoin@yahoo.com,$2b$10$syYY.htdzHpB6mvNoELyf.C.f6NZvo48phVF/JrMApYk2yqTGuWAi,https://i.pravatar.cc/150?img=14,,user
+elena_avax,elena.avalanche@email.com,$2b$10$/zBokCK6L38wEiVAkRfLduYV.witA7Wy4eChJ8YwARNiNhPSAFQo.,https://i.pravatar.cc/150?img=15,0xffff0000aaaa1111bbbb2222cccc3333dddd4444,user
+owner,owner@cryptohub.com,$2b$10$DP/2.y4hqGVT70BjMx9SDuVHISLVjaiwVTee5xI.gpWJ6E5gikm8K,https://ui-avatars.com/api/?name=Owner&background=random,,owner

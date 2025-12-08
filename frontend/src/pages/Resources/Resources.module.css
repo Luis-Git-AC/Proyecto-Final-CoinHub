@@ -1,0 +1,61 @@
+.root {
+  font-weight: 300; 
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.root h2,
+.root h3 {
+  font-weight: 600;
+}
+
+
+.root a:not([class]) {
+  color: var(--color-link);
+}
+.root a:not([class]):visited { color: var(--color-link-visited); }
+.root a:not([class]):hover,
+.root a:not([class]):focus-visible { text-decoration: underline; }
+
+.root article {
+  font-size: 0.98rem;
+}
+
+
+.containerMax {
+  max-width: 900px;
+  margin: 2rem auto;
+}
+.containerNarrow { max-width: 800px; margin: 2rem auto; }
+.detailMeta { color: var(--text-muted); }
+.detailDesc { margin-top: 1rem; }
+.detailLinks { margin-top: 1rem; display: flex; gap: .75rem; align-items: center; }
+.detailLink { color: var(--color-link); text-decoration: underline; }
+.detailLinks a:visited { color: var(--color-link-visited); }
+.detailLinks a:hover,
+.detailLinks a:focus-visible { text-decoration: underline; }
+.detailActions { margin-top: 1rem; display: flex; gap: .5rem; }
+
+.form { margin-top: var(--spacing-md); }
+.field { margin-bottom: var(--spacing-sm); }
+.label { display: block; margin-bottom: .35rem; font-weight: 500; color: var(--text-muted); }
+.input, .textarea, .select { width: 100%; padding: .5rem; border: 1px solid var(--border-color-light); border-radius: var(--radius-sm); background: var(--surface-1, transparent); color: var(--text-primary); }
+.actionsRow { display: flex; gap: .5rem; margin-top: var(--spacing-sm); }
+
+.headerBar { display: flex; justify-content: space-between; align-items: center; }
+.headerActions { display: flex; gap: var(--spacing-sm); align-items: center; }
+
+.grid { display: grid; gap: var(--spacing-md); margin-top: var(--spacing-md); }
+
+.chartBox { border: 1px solid var(--border-color-light); padding: var(--spacing-md); border-radius: var(--radius-md); }
+
+.card { border: 1px solid var(--border-color-light); padding: var(--spacing-md); border-radius: var(--radius-md); }
+.meta { color: var(--text-muted); font-size: .9rem; }
+.desc { margin-top: .5rem; }
+.links { margin-top: .5rem; display: flex; gap: .75rem; align-items: center; }
+.link { color: var(--color-link); text-decoration: underline; }
+.links a:visited { color: var(--color-link-visited); }
+.links a:hover,
+.links a:focus-visible { text-decoration: underline; }

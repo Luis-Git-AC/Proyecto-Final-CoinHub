@@ -1,0 +1,37 @@
+.formContainer {
+   max-width: 800px;
+   margin: 2rem auto;
+}
+
+.field {
+   margin-bottom: .75rem;
+}
+
+.input,
+.textarea,
+.select {
+   width: 100%;
+   padding: .5rem;
+   border-radius: 6px;
+   border: 1px solid var(--border-color);
+   background: var(--bg-secondary);
+   color: var(--text-primary);
+}
+
+.error {
+   color: var(--color-error);
+   font-size: .9rem;
+   margin-top: .35rem;
+}
+
+.submitButton {
+   padding: .5rem .8rem;
+   border-radius: 6px;
+   border: none;
+   cursor: pointer;
+}
+
+.actions {
+   display: flex;
+   gap: .5rem;
+}

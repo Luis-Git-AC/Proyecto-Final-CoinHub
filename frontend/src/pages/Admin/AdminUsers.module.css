@@ -1,0 +1,141 @@
+
+.root {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 12px;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', tahoma, geneva, verdana, sans-serif;
+}
+
+.root tr td[colspan] {
+  color: var(--text-on-light-box);
+}
+
+
+@media (width >= 761px) {
+  
+  .root .pagination {
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+
+    
+    gap: 1rem;
+    box-sizing: border-box;
+  }
+}
+
+
+
+
+@media (width <= 760px) {
+  .root table {
+    display: block;
+    width: 100%;
+  }
+
+  .root thead {
+    display: none; 
+  }
+
+  .root tbody { display: block; }
+
+  .root tr {
+    display: block;
+    margin-bottom: 0.75rem;
+    background: var(--bg-secondary, #0f1724);
+    border-radius: 8px;
+    padding: 0.5rem;
+    box-shadow: 0 1px 0 rgb(255 255 255 / 2%) inset;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  
+  .root tr td[colspan] {
+    display: block;
+    background: rgba(255, 255, 255, 0);
+    color: var(--bg-primary, #0f172a);
+    font-weight: 700;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgb(255 255 255 / 4%);
+  }
+
+  .root tr td {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.5rem 0.25rem;
+    border-bottom: none !important;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .root tr td:first-child { font-weight: 600; }
+
+  .root tr td .actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+  }
+
+  
+  .root .btn.iconOnly { width: 40px; height: 40px; min-width: 40px; }
+
+  
+  .root thead tr td[colspan], .root thead tr td {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  
+  .root .pagination {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  
+  .root .pagination > div { margin: 0 12px; }
+}
+
+
+.root .pagination > div { margin: 0 16px; }
+
+
+@media (width <= 420px) {
+  .root {
+    padding: 0 10px;
+    margin: 1rem auto;
+  }
+
+  .root tr {
+    margin-bottom: 0.6rem;
+    padding: 0.6rem;
+    border-radius: 6px;
+  }
+
+  .root tr td {
+    padding: 0.45rem 0.35rem;
+    font-size: 0.95rem;
+  }
+
+  
+  .root tr td[colspan] {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  
+  .root .btn.iconOnly { width: 36px; height: 36px; min-width: 36px; }
+}
