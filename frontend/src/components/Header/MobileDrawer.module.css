@@ -20,19 +20,19 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  left: 0;
+  right: 0;
   width: 300px;
   max-width: 86%;
   background: linear-gradient(180deg, rgb(255 255 255 / 2%), rgb(255 255 255 / 1%));
   color: var(--text-primary);
   box-shadow: 0 20px 50px rgb(0 0 0 / 60%);
-  transform: translateX(-12px);
+  transform: translateX(12px);
   display: flex;
   flex-direction: column;
   padding: 14px;
   gap: 10px;
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
   animation: slideIn .18s cubic-bezier(.2,.8,.2,1) both;
 }
 
@@ -96,6 +96,6 @@
 
 .nav a.active { background: var(--color-bg-elevated); color: var(--text-primary); }
 
-@keyframes slideIn { from { transform: translateX(-12px); opacity: 0 } to { transform: translateX(0); opacity: 1 } }
+@keyframes slideIn { from { transform: translateX(12px); opacity: 0 } to { transform: translateX(0); opacity: 1 } }
 
 @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
