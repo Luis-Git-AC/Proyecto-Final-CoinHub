@@ -113,27 +113,7 @@
 
   
   .authUser {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  
-  .authUser span { display: none; }
-  .authUser button { display: none; }
-
-  
-  .authUser img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: block;
-    border: 2px solid var(--color-bg-card);
-    box-shadow: 0 2px 8px rgb(0 0 0 / 28%);
+    display: none;
   }
 
   
