@@ -23,7 +23,7 @@
   right: 0;
   width: 300px;
   max-width: 86%;
-  background: linear-gradient(180deg, rgb(255 255 255 / 50%), rgb(255 255 255 / 20%));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgb(255 255 255 / 20%));
   color: var(--text-primary);
   box-shadow: 0 20px 50px rgb(0 0 0 / 60%);
   transform: translateX(12px);
@@ -81,20 +81,32 @@
 .nav a {
   color: var(--text-secondary);
   text-decoration: none;
-  padding: 12px 14px;
+  padding: 14px 16px;
   border-radius: 10px;
   font-weight: 600;
   display:flex;
   gap: 12px;
   align-items:center;
   font-size: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: 6px;
 }
+
+
 
 .linkIcon { width:20px; height:20px; display:inline-flex; align-items:center; justify-content:center; opacity:0.9 }
 
-.nav a:hover { background: var(--color-bg-elevated); color: var(--text-primary); }
+.nav a:hover { 
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--text-primary);
+}
 
-.nav a.active { background: var(--color-bg-elevated); color: var(--text-primary); }
+.nav a.active { 
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
 
 @keyframes slideIn { from { transform: translateX(12px); opacity: 0 } to { transform: translateX(0); opacity: 1 } }
 
