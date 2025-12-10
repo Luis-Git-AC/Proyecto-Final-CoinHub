@@ -33,7 +33,7 @@
   gap: 10px;
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
-  animation: slideIn .18s cubic-bezier(.2,.8,.2,1) both;
+  animation: slideIn .75s cubic-bezier(.2,.8,.2,1) both;
 }
 
 .topRow {

@@ -1,0 +1,42 @@
+.logoLink {
+  position: absolute;
+  top: 12px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1101;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoSvg {
+  width: 60px;
+  height: 60px;
+  transition: transform 0.3s ease;
+}
+
+@media (hover: hover) {
+  .logoSvg:hover {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .logoLink {
+    top: 14px;
+    left: 16px;
+  }
+
+  .logoSvg {
+    width: 46px;
+    height: 46px;
+    transition: none;
+  }
+}

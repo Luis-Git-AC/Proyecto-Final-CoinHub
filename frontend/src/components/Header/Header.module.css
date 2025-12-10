@@ -7,6 +7,7 @@
   top: 0;
   z-index: 1100;
   transition: transform 0.3s ease-in-out;
+  padding-top: 8px;
 }
 
 .header.hidden {
@@ -22,6 +23,12 @@
   justify-content: space-between;
   align-items: center;
   gap: var(--spacing-xl);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
 }
 
 .logo h1 {

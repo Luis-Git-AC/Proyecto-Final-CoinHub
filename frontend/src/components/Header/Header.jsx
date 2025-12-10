@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { useAuth } from '../../context/useAuth'
 import BaseButton from '../Button/BaseButton'
 import useConfirm from '../Confirm/useConfirm'
+import Logo from './Logo'
 
 function Header() {
   const location = useLocation()
@@ -26,10 +27,8 @@ function Header() {
       const currentScrollY = window.scrollY
       
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down
         setIsVisible(false)
       } else {
-        // Scrolling up
         setIsVisible(true)
       }
       
@@ -55,6 +54,7 @@ function Header() {
 
   return (
     <header className={`${styles.header} ${!isVisible ? styles.hidden : ''}`}>
+      <Logo />
       <div className={styles.container}>
         <div className={styles.logo}>
           <Link to="/">
