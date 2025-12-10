@@ -75,11 +75,24 @@
   to { transform: rotate(360deg); }
 }
 
-.ghost{
-  background: var(--bg-secondary);
-  color: var(--text-primary);
+@keyframes ripple {
+  to {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
 }
-.ghost:hover{ background: var(--bg-hover); }
+
+.ghost{
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+.ghost:hover { 
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+}
 
 .cancel{
   background: var(--btn-cancel-bg);
@@ -96,19 +109,62 @@
 .primary-action{
   background: var(--btn-primary-bg);
   color: var(--btn-primary-text);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: 1.5px solid rgba(14, 165, 233, 0.4);
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
 }
-.primary-action:hover{ background: var(--btn-primary-bg-hover); }
+
+.primary-action::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.primary-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(14, 165, 233, 0.35);
+  border-color: rgba(14, 165, 233, 0.7);
+}
+
+.primary-action:hover::before {
+  animation: ripple 0.6s ease-out;
+}
+
+.primary-action:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
+}
 
 .cancel-action{
   background: var(--btn-cancel-bg);
   color: var(--btn-cancel-text);
-  border: 1px solid var(--border-color-light);
+  border: 1.5px solid rgba(255, 107, 107, 0.4);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.15);
 }
+
 .cancel-action:hover{
   background: var(--btn-cancel-bg-hover);
   color: var(--text-inverse);
-  box-shadow: 0 2px 6px rgb(0 0 0 / 25%);
-  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+  border-color: rgba(255, 107, 107, 0.7);
+}
+
+.cancel-action:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.15);
 }
 
 .danger{
@@ -116,11 +172,6 @@
   color: var(--text-inverse);
 }
 .danger:hover{ background: #b91c1c; }
-
-.like{
-  background: transparent;
-  color: #ED64A6;
-}
 
 .sm{ padding: 0.25rem 0.5rem; font-size: 0.9rem; }
 .md{ padding: 0.5rem 0.9rem; font-size: 1rem; }

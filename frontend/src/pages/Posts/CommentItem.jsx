@@ -61,7 +61,7 @@ export default function CommentItem({ comment, onUpdated, onDeleted }) {
           {editing ? (
             <textarea value={text} onChange={event => setText(event.target.value)} rows={3} style={{ width: '100%', padding: '.4rem' }} />
           ) : (
-            <div style={{ fontSize: '.9rem', color: '#444' }}>{comment.content}</div>
+            <div style={{ fontSize: '.9rem', color: '#cececeff' }}>{comment.content}</div>
           )}
           <div style={{ fontSize: '.8rem', color: '#777', marginTop: '.5rem' }}>por {comment.userId?.username || 'Usuario'} • {new Date(comment.createdAt).toLocaleString()}</div>
         </div>

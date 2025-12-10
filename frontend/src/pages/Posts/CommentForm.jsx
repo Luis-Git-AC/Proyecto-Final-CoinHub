@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { createComment } from '../../services/comments'
 import { useAuth } from '../../context/useAuth'
 import useToast from '../../components/Toasts/useToast'
+import useConfirm from '../../components/Confirm/useConfirm'
 import styles from './CommentForm.module.css'
 import BaseButton from '../../components/Button/BaseButton'
 
@@ -10,15 +11,19 @@ export default function CommentForm({ postId, onPosted }) {
   const [text, setText] = useState('')
   const [loading, setLoading] = useState(false)
   const toast = useToast()
+  const confirm = useConfirm()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     if (!text.trim()) return
     if (!token) {
       toast.info('Inicia sesión para comentar')
-      setLoading(false)
       return
     }
+
+    const confirmed = await confirm('¿Publicar este comentario?')
+    if (!confirmed) return
+
     setLoading(true)
     try {
       await createComment(token, { postId, content: text })
@@ -41,7 +46,7 @@ export default function CommentForm({ postId, onPosted }) {
         rows={3}
       />
       <div className={styles.actions}>
-        <BaseButton type="submit" variant="primary" size="md" disabled={loading}>
+        <BaseButton type="submit" variant="primary-action" size="md" disabled={loading}>
           {loading ? 'Publicando...' : 'Publicar'}
         </BaseButton>
       </div>
