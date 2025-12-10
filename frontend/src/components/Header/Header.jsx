@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import styles from './Header.module.css'
 import MobileDrawer from './MobileDrawer'
 import stylesMobile from './MobileDrawer.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from '../../context/useAuth'
 import BaseButton from '../Button/BaseButton'
 import useConfirm from '../Confirm/useConfirm'
@@ -18,6 +18,28 @@ function Header() {
     if (confirmed) logoutUser()
   }
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down
+        setIsVisible(false)
+      } else {
+        // Scrolling up
+        setIsVisible(true)
+      }
+      
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY])
+
   const toggleDrawer = () => setDrawerOpen(v => !v)
   const closeDrawer = () => setDrawerOpen(false)
   const handleNavClick = (event, path, opts = {}) => {
@@ -32,7 +54,7 @@ function Header() {
   }
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${!isVisible ? styles.hidden : ''}`}>
       <div className={styles.container}>
         <div className={styles.logo}>
           <Link to="/">
