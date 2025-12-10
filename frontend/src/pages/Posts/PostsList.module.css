@@ -63,13 +63,6 @@
    box-shadow: 0 2px 8px rgba(14, 165, 233, 0.25);
 }
 
-@keyframes ripple {
-   to {
-      width: 300px;
-      height: 300px;
-      opacity: 0;
-   }
-}
 
 .buttonIcon {
    display: inline-block;
@@ -81,7 +74,7 @@
    display: inline;
 }
 
-@media (max-width: 640px) {
+@media (width <= 640px) {
    .newPostButton {
       padding: 0.5rem;
       font-size: 0.95rem;

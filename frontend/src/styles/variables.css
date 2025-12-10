@@ -78,3 +78,31 @@
   --color-bg-elevated: var(--bg-tertiary);
   --font-mono: var(--font-family-mono);
 }
+
+
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ripple {
+  to {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

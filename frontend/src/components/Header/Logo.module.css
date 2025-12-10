@@ -28,7 +28,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (width <= 640px) {
   .logoLink {
     top: 14px;
     left: 16px;
