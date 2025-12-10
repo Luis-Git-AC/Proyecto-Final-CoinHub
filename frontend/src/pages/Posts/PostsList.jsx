@@ -34,7 +34,14 @@ export default function PostsList() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>Foro</h2>
-        <BaseButton as="link" to="/posts/new" variant="primary-action" size="md" className={styles.newPostButton}>Nuevo Post</BaseButton>
+        <BaseButton as="link" to="/posts/new" variant="primary-action" size="md" className={styles.newPostButton} startIcon={
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={styles.buttonIcon}>
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        }>
+          <span className={styles.buttonText}>Abrir Hilo</span>
+        </BaseButton>
       </div>
 
       {loading && <div>Cargando...</div>}
