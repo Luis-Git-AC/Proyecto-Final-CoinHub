@@ -106,7 +106,7 @@ export default function AdminUsers() {
               return (
                 <>
                   <tr key={`header-${role}`}>
-                    <td colSpan={5} style={{ padding: '.5rem', background: 'var(--color-primary)', color: 'var(--text-inverse)', fontWeight: 'bold', border: '1px solid var(--color-primary-dark)' }}>{role.toUpperCase()}</td>
+                    <td colSpan={5} className={styles.roleHeader}>{role.toUpperCase()}</td>
                   </tr>
                   {group.map(userItem => (
                     <tr key={userItem._id}>
