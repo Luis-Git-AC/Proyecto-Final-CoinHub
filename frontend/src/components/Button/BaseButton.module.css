@@ -67,6 +67,19 @@
   animation: spin 900ms linear infinite;
 }
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ripple {
+  to {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
 
 .ghost{
   background: rgba(255, 255, 255, 0.08);

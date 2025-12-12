@@ -19,7 +19,7 @@
    padding: 0.65rem 1rem;
    border-radius: 100px;
    text-decoration: none;
-   background: #0EA5E9;
+   background: #0ea4e9bd;
    color: white;
    font-weight: 600;
    letter-spacing: 0px;
@@ -50,12 +50,12 @@
 
 .newPostButton:hover {
    transform: translateY(-2px);
-   box-shadow: 0 8px 20px rgba(14, 165, 233, 0.35);
+   box-shadow: 0 2px 15px rgba(14, 165, 233, 0.35);
    background: #0284C7;
 }
 
 .newPostButton:hover::before {
-   animation: ripple 0.6s ease-out;
+   animation: ripple 1s ease-out;
 }
 
 .newPostButton:active {
@@ -63,6 +63,13 @@
    box-shadow: 0 2px 8px rgba(14, 165, 233, 0.25);
 }
 
+@keyframes ripple {
+   to {
+      width: 300px;
+      height: 300px;
+      opacity: 0;
+   }
+}
 
 .buttonIcon {
    display: inline-block;
