@@ -245,8 +245,8 @@ router.delete('/profile', auth, async (req, res) => {
     const user = await User.findById(req.userId)
     if (!user) return res.status(404).json({ error: 'Usuario no encontrado' })
 
-    if (user.role === 'admin' || user.role === 'owner') {
-      return res.status(403).json({ error: 'Los administradores y owners no pueden eliminar su propia cuenta desde el perfil' })
+    if (user.role === 'owner') {
+      return res.status(403).json({ error: 'Los owners no pueden eliminar su propia cuenta desde el perfil' })
     }
 
     const match = await bcrypt.compare(currentPassword, user.password)
@@ -393,7 +393,7 @@ router.delete('/:userId', auth, checkRole('admin', 'owner'), async (req, res) =>
 router.put('/:userId/role', auth, checkRole('admin', 'owner'), async (req, res) => {
   try {
     const { role } = req.body || {}
-    const allowed = ['user', 'admin', 'moderator']
+    const allowed = ['user', 'admin']
     if (!role || !allowed.includes(role)) {
       return res.status(400).json({ error: 'Rol inválido' })
     }

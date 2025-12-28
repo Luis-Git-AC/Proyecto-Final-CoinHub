@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { ToastContext } from './ToastContext'
 
 let idCounter = 1
@@ -17,11 +17,11 @@ export function ToastProvider({ children }) {
     return toastId
   }, [remove])
 
-  const value = {
+  const value = useMemo(() => ({
     success: (message, timeToLive) => show(message, 'success', timeToLive),
     error: (message, timeToLive) => show(message, 'error', timeToLive),
     info: (message, timeToLive) => show(message, 'info', timeToLive),
-  }
+  }), [show])
 
   return (
     <ToastContext.Provider value={value}>

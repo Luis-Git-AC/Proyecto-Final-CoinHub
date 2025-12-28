@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../../context/useAuth'
 import BaseButton from '../../components/Button/BaseButton'
@@ -6,11 +6,15 @@ import btnStyles from '../../components/Button/BaseButton.module.css'
 
 export default function Register() {
   const navigate = useNavigate()
-  const { registerUser, loading, error } = useAuth()
+  const { registerUser, loading, error, clearError } = useAuth()
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [wallet, setWallet] = useState('')
+
+  useEffect(() => {
+    if (clearError) clearError()
+  }, [clearError])
 
   const handleSubmit = async (event) => {
     event.preventDefault()

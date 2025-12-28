@@ -354,10 +354,10 @@ export default function Profile() {
         </form>
       </div>
 
-      {user.role === 'admin' || user.role === 'owner' ? (
+      {user.role === 'owner' ? (
         <div style={{ marginTop: '1.25rem', border: '1px solid #eef2ff', background: '#f7fbff', padding: '1rem', borderRadius: 8 }}>
           <h3 style={{ color: '#0b3b8b' }}>Eliminar cuenta</h3>
-          <p style={{ marginTop: 0, color: '#444' }}>Tu cuenta tiene el rol de <strong>admin</strong>. Por seguridad, las cuentas administrativas no pueden eliminarse desde el perfil. Para acciones sobre la cuenta de admin utiliza el panel de administración.</p>
+          <p style={{ marginTop: 0, color: '#444' }}>Tu cuenta tiene el rol de <strong>owner</strong>. Por seguridad, las cuentas owner no pueden eliminarse desde el perfil.</p>
         </div>
       ) : (
         <div style={{ marginTop: '1.25rem', border: '1px solid rgb(220 38 38 / 30%)', background: 'var(--bg-error)', padding: '1rem', borderRadius: 8 }}>

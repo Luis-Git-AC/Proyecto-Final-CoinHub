@@ -65,7 +65,7 @@ Estructura y responsabilidades (ficheros clave)
 
 Modelos principales (`backend/models`)
 
-- `User` — `username`, `email`, `password` (hash), `avatar`, `wallet_address`, `role` (user|moderator|admin|owner), `tokenVersion`, timestamps. Roles usados para control de permisos en rutas sensibles.
+- `User` — `username`, `email`, `password` (hash), `avatar`, `wallet_address`, `role` (user|admin|owner), `tokenVersion`, timestamps. Roles usados para control de permisos en rutas sensibles.
 - `Post` — `userId` (ref User), `title`, `content`, `category`, `image` (Cloudinary URL), `likes` (array de User.\_id), timestamps, índices para búsquedas/paginación.
 - `Comment` — `postId` (ref Post), `userId` (ref User), `content`, timestamps.
 - `Resource` — `userId` (ref User), `title`, `description`, `type` (pdf|image|guide), `fileUrl` (Cloudinary), `originalName`, `category`.

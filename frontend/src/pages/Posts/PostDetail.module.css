@@ -5,6 +5,10 @@
    margin: 2rem auto;
 }
 
+.topBar {
+   margin-bottom: .75rem;
+}
+
 .meta {
    color: var(--text-muted);
    margin-bottom: .5rem;

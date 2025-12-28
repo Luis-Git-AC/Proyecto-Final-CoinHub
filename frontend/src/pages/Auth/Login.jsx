@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useLocation, Link } from 'react-router-dom'
 import { useAuth } from '../../context/useAuth'
 import BaseButton from '../../components/Button/BaseButton'
@@ -7,9 +7,13 @@ import btnStyles from '../../components/Button/BaseButton.module.css'
 export default function Login() {
   const navigate = useNavigate()
   const location = useLocation()
-  const { loginUser, loading, error } = useAuth()
+  const { loginUser, loading, error, clearError } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
+  useEffect(() => {
+    if (clearError) clearError()
+  }, [clearError])
 
   const handleSubmit = async (event) => {
     event.preventDefault()

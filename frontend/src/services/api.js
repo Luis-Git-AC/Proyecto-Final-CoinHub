@@ -59,12 +59,27 @@ export async function request(endpoint, options = {}) {
     } catch (error) {
       if (timer) clearTimeout(timer)
       if (error.name === 'AbortError') throw error
-      lastError = error
+
+      const msg = String(error && error.message ? error.message : '')
+      const isNetworkError =
+        error instanceof TypeError &&
+        /failed to fetch|networkerror|load failed|fetch failed/i.test(msg)
+
+      if (isNetworkError) {
+        const friendly = new Error(
+          'No se pudo conectar con el servidor. Revisa que el backend esté encendido y que el origen esté permitido por CORS.'
+        )
+        friendly.code = 'NETWORK_ERROR'
+        friendly.cause = error
+        lastError = friendly
+      } else {
+        lastError = error
+      }
       if (attempt < retries) {
         attempt++
         continue
       }
-      throw error
+      throw lastError
     }
   }
   throw lastError || new Error('Request failed')

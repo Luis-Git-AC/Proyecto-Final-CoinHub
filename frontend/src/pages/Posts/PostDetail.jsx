@@ -52,8 +52,18 @@ export default function PostDetail() {
   const isOwner = user && post.userId && user._id === post.userId._id
   const canManage = isOwner || (user && (user.role === 'admin' || user.role === 'owner'))
 
+  const handleBack = () => {
+    if (window.history.length > 1) navigate(-1)
+    else navigate('/posts')
+  }
+
   return (
     <div className={styles.container}>
+      <div className={styles.topBar}>
+        <BaseButton type="button" variant="ghost" size="sm" onClick={handleBack} aria-label="Volver" title="Volver">
+          Volver
+        </BaseButton>
+      </div>
       <h2>{post.title}</h2>
       <div className={styles.meta}>por {post.userId?.username} • {new Date(post.createdAt).toLocaleString()}</div>
       {post.image && <img className={styles.image} src={post.image} alt={post.title} />}

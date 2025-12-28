@@ -20,7 +20,7 @@ export default function AdminUsers() {
     setLoading(true)
     try {
       const res = await listUsers(token, { page: pageNumber, limit: 20 })
-      const rolesOrder = ['owner', 'admin', 'moderator', 'user']
+      const rolesOrder = ['owner', 'admin', 'user']
       const usersRaw = res.users || []
 
       usersRaw.sort((userA, userB) => {
@@ -100,7 +100,7 @@ export default function AdminUsers() {
             </tr>
           </thead>
           <tbody>
-            {['owner','admin', 'moderator', 'user'].map(role => {
+            {['owner','admin', 'user'].map(role => {
               const group = users.filter(userItem => (userItem.role || 'user') === role)
               if (!group.length) return null
               return (

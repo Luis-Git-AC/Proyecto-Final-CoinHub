@@ -8,6 +8,10 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(!!token)
   const [error, setError] = useState(null)
 
+  const clearError = useCallback(() => {
+    setError(null)
+  }, [])
+
   const clearSessionState = useCallback(() => {
     setUser(null)
     setToken('')
@@ -70,6 +74,6 @@ export function AuthProvider({ children }) {
     clearSessionState()
   }
 
-  const contextValue = { user, token, loading, error, loginUser, registerUser, logoutUser, loadCurrentUser, isAuthenticated: !!user }
+  const contextValue = { user, token, loading, error, clearError, loginUser, registerUser, logoutUser, loadCurrentUser, isAuthenticated: !!user }
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
 }

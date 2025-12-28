@@ -52,8 +52,18 @@ export default function ResourceDetail() {
   const isOwner = user && resource.userId && user._id === resource.userId._id
   const canManage = isOwner || (user && (user.role === 'admin' || user.role === 'owner'))
 
+  const handleBack = () => {
+    if (window.history.length > 1) navigate(-1)
+    else navigate('/resources')
+  }
+
   return (
     <div className={`${styles.root} ${styles.containerNarrow}`}>
+      <div style={{ marginBottom: '.75rem' }}>
+        <BaseButton type="button" variant="ghost" size="sm" onClick={handleBack} aria-label="Volver" title="Volver">
+          Volver
+        </BaseButton>
+      </div>
       <h2>{resource.title}</h2>
       <div className={styles.detailMeta}>{resource.type} • {resource.category}</div>
       <p className={styles.detailDesc}>{resource.description}</p>

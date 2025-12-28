@@ -11,11 +11,21 @@ connectDB();
 const allowedOriginsRaw = process.env.FRONTEND_URLS || process.env.FRONTEND_URL || 'http://localhost:5173';
 const allowedOrigins = allowedOriginsRaw.split(',').map(url => url.trim()).filter(Boolean);
 
+const isDev = (process.env.NODE_ENV || 'development') !== 'production';
+const isAllowedDevOrigin = (origin) => {
+  if (!origin) return true;
+  if (!isDev) return false;
+  return /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin);
+};
+
 app.use(cors({
   origin: function(origin, callback) {
 
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    if (isAllowedDevOrigin(origin)) {
       return callback(null, true);
     }
     return callback(new Error('Origin not allowed by CORS: ' + origin));
