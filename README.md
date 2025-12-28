@@ -104,3 +104,35 @@ Consideraciones de seguridad y buenas prácticas
 Se incluye `insomnia/insomnia_collection.json` con requests preconfigurados (auth, posts, resources, comments, users, portfolio). Útil para validar flujos completos y compartir escenarios de prueba con el corrector.
 
 ---
+
+Correcciones:
+
+-Doble “recarga”/doble GET al crear post (Foro)
+
+Quité StrictMode para evitar el doble montaje/useEffect en desarrollo que disparaba dos peticiones seguidas. Memoicé el valor del ToastContext para que al mostrar un toast no cambie la referencia de toast y no se vuelvan a ejecutar efectos de carga.(Archivos: ToastProvider.jsx, main.jsx)
+
+-Error “Credenciales inválidas” que se quedaba al navegar
+
+Añadí una función para limpiar el error global de auth y se ejecuta al entrar en Login/Registro, evitando que un error anterior persista en pantallas nuevas. (Archivos: AuthContext.jsx, Login.jsx, Register.jsx)
+
+“Fetch error” al subir recursos (entornos con puertos/orígenes distintos) 
+
+He hecho que, si el navegador bloquea la petición (CORS) o el backend no responde y fetch falla, la app muestre un mensaje claro y accionable en vez de un “Fetch error” genérico, para que el problema se entienda.
+Backend: CORS más tolerante en desarrollo para localhost/127.0.0.1 con cualquier puerto (producción sigue estricta).
+(Archivos: server.js, api.js)
+
+“Brinco” al navegar 
+
+Lo solucioné reservando siempre el espacio del scrollbar con scrollbar-gutter: stable (y un fallback overflow-y: scroll), para que el ancho no cambie.(Archivo: globals.css)
+
+Falta un botón “Volver” (Posts/Recursos)
+
+Añadí un botón “Volver” en las páginas de detalle que usa navigate(-1) para volver al punto anterior; si no hay historial, vuelve a la lista (/posts o /resources).
+(Archivos: PostDetail.jsx, ResourceDetail.jsx, PostDetail.module.css)
+
+Confusión de roles en el mensaje de “Eliminar cuenta”
+
+He modificado el texto para que tenga coherencia y he cambiado la regla: admin ahora sí puede auto-eliminar su cuenta desde Perfil con contraseña; owner sigue bloqueado. (Archivos: Profile.jsx, users.js)
+
+Rol moderador → Era un rol obsoleto, lo he eliminado.
+
