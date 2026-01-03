@@ -1,17 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content="CoinHub: panel de noticias cripto, seguimiento de criptomonedas y gestión de portfolio."
+      content="CoinHub — Noticias, seguimiento y gestión de portfolio de criptomonedas. Mantente al día con precios, análisis y herramientas para gestionar tus inversiones en cripto."
     />
     <meta
       name="keywords"
-      content="criptomonedas, bitcoin, ethereum, portfolio, noticias, crypto"
+      content="criptomonedas, bitcoin, ethereum, portfolio crypto, noticias cripto, seguimiento criptomonedas"
     />
+    <meta name="language" content="es" />
     <meta name="author" content="CoinHub" />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://coin-hub-frontend-tau.vercel.app/" />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://coin-hub-frontend-tau.vercel.app/"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://coin-hub-frontend-tau.vercel.app/en/"
+    />
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>₿</text></svg>"
@@ -19,22 +31,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f6a623" />
 
-    <meta property="og:title" content="CoinHub" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="CoinHub" />
+    <meta
+      property="og:title"
+      content="CoinHub — Noticias y gestión de portfolio cripto"
+    />
     <meta
       property="og:description"
-      content="Panel de noticias cripto y gestión de portfolio."
+      content="Panel de noticias cripto, seguimiento de monedas y herramientas para gestionar tu portfolio de criptomonedas."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://tu-dominio.example/" />
-    <meta property="og:image" content="/og-image.png" />
+    <meta
+      property="og:url"
+      content="https://coin-hub-frontend-tau.vercel.app/"
+    />
+    <meta
+      property="og:image"
+      content="https://coin-hub-frontend-tau.vercel.app/og-image.png"
+    />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="CoinHub" />
+    <meta name="twitter:site" content="@CoinHub" />
+    <meta
+      name="twitter:title"
+      content="CoinHub — Noticias y portfolio cripto"
+    />
     <meta
       name="twitter:description"
-      content="Panel de noticias cripto y gestión de portfolio."
+      content="Sigue precios, lectura de noticias y administra tu portfolio de criptomonedas con CoinHub."
     />
-    <meta name="twitter:image" content="/og-image.png" />
+    <meta
+      name="twitter:image"
+      content="https://coin-hub-frontend-tau.vercel.app/og-image.png"
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,9 +72,38 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;300;400;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "name": "CoinHub",
+            "url": "https://coin-hub-frontend-tau.vercel.app/",
+            "logo": "https://coin-hub-frontend-tau.vercel.app/og-image.png",
+            "sameAs": []
+          },
+          {
+            "@type": "WebSite",
+            "url": "https://coin-hub-frontend-tau.vercel.app/",
+            "name": "CoinHub",
+            "inLanguage": "es"
+          },
+          {
+            "@type": "WebPage",
+            "url": "https://coin-hub-frontend-tau.vercel.app/",
+            "name": "CoinHub — Noticias y gestión de portfolio cripto",
+            "description": "Panel de noticias cripto, seguimiento de monedas y herramientas para gestionar tu portfolio de criptomonedas.",
+            "inLanguage": "es"
+          }
+        ]
+      }
+    </script>
     <title>CoinHub</title>
   </head>
   <body>
+    <noscript>Para ver este sitio activa JavaScript en tu navegador.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
