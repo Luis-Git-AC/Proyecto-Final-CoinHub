@@ -35,12 +35,12 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const authRoutes = require('./api/routes/authRoutes');
-const postRoutes = require('./api/routes/postsRoutes');
-const commentRoutes = require('./api/routes/commentsRoutes');
-const resourceRoutes = require('./api/routes/resourcesRoutes');
-const userRoutes = require('./api/routes/usersRoutes');
-const portfolioRoutes = require('./api/routes/portfolioRoutes');
+const authRoutes = require('./API/routes/authRoutes');
+const postRoutes = require('./API/routes/postsRoutes');
+const commentRoutes = require('./API/routes/commentsRoutes');
+const resourceRoutes = require('./API/routes/resourcesRoutes');
+const userRoutes = require('./API/routes/usersRoutes');
+const portfolioRoutes = require('./API/routes/portfolioRoutes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);

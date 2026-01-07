@@ -1,1 +1,1 @@
-module.exports = require('../api/models/Portfolio');
+module.exports = require('../API/models/Portfolio');

@@ -1,1 +1,1 @@
-module.exports = require('../api/models/User');
+module.exports = require('../API/models/User');

@@ -1,1 +1,1 @@
-module.exports = require('../api/models/Resource');
+module.exports = require('../API/models/Resource');

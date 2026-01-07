@@ -1,1 +1,1 @@
-module.exports = require('../api/models/Post');
+module.exports = require('../API/models/Post');

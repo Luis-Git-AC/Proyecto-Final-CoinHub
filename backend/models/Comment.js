@@ -1,1 +1,1 @@
-module.exports = require('../api/models/Comment');
+module.exports = require('../API/models/Comment');
