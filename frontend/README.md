@@ -8,8 +8,6 @@ Todo el frontend (páginas, componentes, hooks, contextos, servicios) está migr
 
 ## Capturas de pantalla
 
-> Pendiente de añadir las imágenes en `../docs/screenshots/`.
-
 ![Criptos](../docs/screenshots/criptos.png)
 
 ![Posts — listado](../docs/screenshots/posts-list.png)

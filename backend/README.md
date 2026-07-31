@@ -13,8 +13,6 @@ Todo el backend (rutas, controladores, modelos, middlewares, scripts de utilidad
 
 ## Capturas de pantalla
 
-> Pendiente de añadir las imágenes en `../docs/screenshots/`.
-
 ![Documentación interactiva (Swagger UI)](../docs/screenshots/swagger-ui.png)
 
 ## Despliegue

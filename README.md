@@ -16,8 +16,6 @@ El proyecto nació en JavaScript (React + Express) y ha sido **migrado íntegram
 
 ## Capturas de pantalla
 
-> Pendiente de añadir las imágenes en `docs/screenshots/` (ver detalle de qué capturar en `frontend/README.md` y `backend/README.md`). Máximo 8 capturas en todo el proyecto — ver el listado completo más abajo.
-
 | Home — tema claro | Home — tema oscuro |
 | --- | --- |
 | ![Home, tema claro](docs/screenshots/home-light.png) | ![Home, tema oscuro](docs/screenshots/home-dark.png) |
