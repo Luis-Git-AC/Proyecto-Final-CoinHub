@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: RTC-Proyecto-Final-Coinhub/frontend
+        working-directory: frontend
     steps:
       - uses: actions/checkout@v4
 
@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: RTC-Proyecto-Final-Coinhub/frontend/package-lock.json
+          cache-dependency-path: frontend/package-lock.json
 
       - run: npm ci
       - run: npm run typecheck
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: RTC-Proyecto-Final-Coinhub/backend
+        working-directory: backend
     steps:
       - uses: actions/checkout@v4
 
@@ -41,7 +41,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: RTC-Proyecto-Final-Coinhub/backend/package-lock.json
+          cache-dependency-path: backend/package-lock.json
 
       - run: npm ci
       - run: npm run typecheck
@@ -65,23 +65,23 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: |
-            RTC-Proyecto-Final-Coinhub/frontend/package-lock.json
-            RTC-Proyecto-Final-Coinhub/backend/package-lock.json
+            frontend/package-lock.json
+            backend/package-lock.json
 
       - name: Instalar dependencias del backend
-        working-directory: RTC-Proyecto-Final-Coinhub/backend
+        working-directory: backend
         run: npm ci
 
       - name: Instalar dependencias del frontend
-        working-directory: RTC-Proyecto-Final-Coinhub/frontend
+        working-directory: frontend
         run: npm ci
 
       - name: Instalar navegador de Playwright
-        working-directory: RTC-Proyecto-Final-Coinhub/frontend
+        working-directory: frontend
         run: npx playwright install --with-deps chromium
 
       - name: Ejecutar tests E2E (backend contra MongoDB en memoria)
-        working-directory: RTC-Proyecto-Final-Coinhub/frontend
+        working-directory: frontend
         run: npm run test:e2e
 
       - name: Subir reporte de Playwright
@@ -89,5 +89,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
-          path: RTC-Proyecto-Final-Coinhub/frontend/playwright-report/
+          path: frontend/playwright-report/
           retention-days: 7
