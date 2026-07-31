@@ -1,0 +1,8 @@
+.char {
+  display: inline-block;
+  animation: staggerFadeUp 0.4s ease both;
+}
+
+.space {
+  display: inline-block;
+}

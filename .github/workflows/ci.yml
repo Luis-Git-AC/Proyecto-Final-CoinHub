@@ -1,0 +1,93 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  frontend:
+    name: Frontend — typecheck · lint · build · test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: RTC-Proyecto-Final-Coinhub/frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: RTC-Proyecto-Final-Coinhub/frontend/package-lock.json
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run build
+      - run: npm test
+
+  backend:
+    name: Backend — typecheck · lint · build · test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: RTC-Proyecto-Final-Coinhub/backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: RTC-Proyecto-Final-Coinhub/backend/package-lock.json
+
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run build
+      - run: npm test
+        env:
+          NODE_ENV: test
+
+  e2e:
+    name: E2E (Playwright) — no bloqueante
+    runs-on: ubuntu-latest
+    # No bloqueante todavía: los 3 flujos son nuevos y aún no se ha probado
+    # su estabilidad en el runner de CI (sí en local, ver frontend/e2e).
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            RTC-Proyecto-Final-Coinhub/frontend/package-lock.json
+            RTC-Proyecto-Final-Coinhub/backend/package-lock.json
+
+      - name: Instalar dependencias del backend
+        working-directory: RTC-Proyecto-Final-Coinhub/backend
+        run: npm ci
+
+      - name: Instalar dependencias del frontend
+        working-directory: RTC-Proyecto-Final-Coinhub/frontend
+        run: npm ci
+
+      - name: Instalar navegador de Playwright
+        working-directory: RTC-Proyecto-Final-Coinhub/frontend
+        run: npx playwright install --with-deps chromium
+
+      - name: Ejecutar tests E2E (backend contra MongoDB en memoria)
+        working-directory: RTC-Proyecto-Final-Coinhub/frontend
+        run: npm run test:e2e
+
+      - name: Subir reporte de Playwright
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: RTC-Proyecto-Final-Coinhub/frontend/playwright-report/
+          retention-days: 7

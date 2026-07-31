@@ -1,0 +1,9 @@
+.typeAnim {
+  display: inline;
+}
+
+.cursor {
+  font-weight: 300;
+  animation: cursorBlink 1s step-start infinite;
+  margin-left: 1px;
+}

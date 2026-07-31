@@ -1,0 +1,59 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  padding: var(--spacing-md, 1rem) 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 6px;
+  font-size: var(--font-size-sm, 0.8125rem);
+  font-weight: 500;
+  border: 1px solid var(--border-color-light, #2a2d3a);
+  border-radius: var(--radius-md, 8px);
+  background: transparent;
+  color: var(--text-secondary, #8b8fa8);
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--bg-secondary, #1a1d27);
+  color: var(--text-primary, #e8eaf0);
+  border-color: var(--color-primary, #4f8ef7);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary, #4f8ef7);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.btnActive {
+  background: var(--color-primary, #4f8ef7);
+  color: #fff;
+  border-color: var(--color-primary, #4f8ef7);
+  pointer-events: none;
+}
+
+.ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 36px;
+  color: var(--text-muted, #6b7280);
+  font-size: var(--font-size-sm, 0.8125rem);
+  user-select: none;
+}

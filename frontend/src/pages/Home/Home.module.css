@@ -23,7 +23,8 @@
   font-weight: bold;
 }
 
-.newsHeader p {
+.newsHeader p,
+.newsSubtitle {
   font-size: var(--font-size-sm);
   color: var(--text-tertiary);
   font-family: var(--font-family-mono);

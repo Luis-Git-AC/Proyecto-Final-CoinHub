@@ -71,6 +71,17 @@
 
 .userName { font-weight:700; font-size:1rem; }
 
+.themeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 6px;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
+  margin-top: var(--spacing-sm);
+}
+
 .nav {
   display:flex;
   flex-direction:column;

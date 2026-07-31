@@ -1,0 +1,21 @@
+.card {
+  pointer-events: none;
+}
+
+.nameBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.priceRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.statsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

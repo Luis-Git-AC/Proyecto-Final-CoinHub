@@ -1,0 +1,8 @@
+.word {
+  display: inline-block;
+  opacity: 0;
+}
+
+.word.visible {
+  animation: wordReveal 0.45s ease both;
+}

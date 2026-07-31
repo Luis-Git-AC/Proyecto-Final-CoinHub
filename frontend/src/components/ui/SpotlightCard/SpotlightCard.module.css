@@ -1,0 +1,19 @@
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  transition: background 80ms linear;
+  z-index: 0;
+}
+
+/* Ensure children render above the spotlight layer */
+.card > *:not(.spotlight) {
+  position: relative;
+  z-index: 1;
+}

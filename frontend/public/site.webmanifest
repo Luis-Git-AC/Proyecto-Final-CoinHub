@@ -1,0 +1,17 @@
+{
+  "name": "CoinHub",
+  "short_name": "CoinHub",
+  "description": "Noticias, seguimiento y gestión de portfolio de criptomonedas.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f1117",
+  "theme_color": "#f6a623",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>₿</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

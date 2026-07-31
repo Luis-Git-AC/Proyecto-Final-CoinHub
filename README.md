@@ -1,278 +1,90 @@
-CoinHub es una plataforma orientada a usuarios interesados en criptomonedas que combina una interfaz React para consultar precios, gestionar un portfolio y compartir contenido, con un backend en Node/Express que ofrece persistencia, autenticación, subida de recursos y APIs para la interacción social (posts, comentarios, likes...). Es la continuación del Proyecto 4 (Frontend React) ampliado y que incluye la lógica del backend.
+[![CI](https://github.com/Luis-Git-AC/CoinHub/actions/workflows/ci.yml/badge.svg)](https://github.com/Luis-Git-AC/CoinHub/actions/workflows/ci.yml)
 
----
+# CoinHub
 
-**Frontend**
+CoinHub es una plataforma para usuarios interesados en criptomonedas: consulta de precios y noticias, gestión de un portfolio personal y un foro de posts/comentarios/recursos con roles de usuario. Combina un frontend en React con un backend en Node/Express + MongoDB que centraliza persistencia, autenticación y subida de archivos.
 
-## Despliegue
+## Migración de JavaScript a TypeScript
 
-- URL (producción): https://coin-hub-frontend-tau.vercel.app/
+El proyecto nació en JavaScript (React + Express) y ha sido **migrado íntegramente a TypeScript**, tanto en frontend como en backend:
 
-Objetivo: ofrecer una experiencia de usuario sólida — navegación clara, vistas de mercado y noticias, manejo de portfolio, creación/consumo de contenido, y perfil personal.
+- Tipado estricto (`strict: true`) en los dos `tsconfig.json`, con `moduleResolution: node16` en el backend y `bundler` en el frontend. El frontend además activa `noUncheckedIndexedAccess`.
+- 0 ficheros `.js`/`.jsx` de código de aplicación: todo el backend (rutas, controladores, modelos, middlewares, scripts de utilidades y seed) y todo el frontend (componentes, páginas, hooks, servicios) están en `.ts`/`.tsx`.
+- Validación en runtime con **Zod** en los módulos de auth, posts y portfolio, infiriendo los tipos estáticos desde el propio esquema (una sola fuente de verdad en vez de duplicar validador + interfaz).
+- `portfolio` se reestructuró además como caso de estudio de **Clean Architecture** (Controller → Service → Repository), documentado en el README del backend.
+- `npm run typecheck` (`tsc --noEmit`) pasa sin errores en ambos paquetes, verificado en CI.
 
-Páginas (componentes en `frontend/src/pages`) y responsabilidades
+## Capturas de pantalla
 
-- `Home` (`Home.jsx`, `NoticiaCard.jsx`)
+> Pendiente de añadir las imágenes en `docs/screenshots/` (ver detalle de qué capturar en `frontend/README.md` y `backend/README.md`). Máximo 8 capturas en todo el proyecto — ver el listado completo más abajo.
 
-  - Panel de noticias (consume `useNoticias`), filtros con `SearchForm`, metadatos de actualización y dos componentes `WorldClocks` a ambos lados.
+| Home — tema claro | Home — tema oscuro |
+| --- | --- |
+| ![Home, tema claro](docs/screenshots/home-light.png) | ![Home, tema oscuro](docs/screenshots/home-dark.png) |
 
-- `Criptos` (`Criptos.jsx`)
+![Portfolio](docs/screenshots/portfolio.png)
 
-  - Listado Top (usa `useCriptos`), búsqueda, polling periódico para refrescar precios, animaciones de cambio y acciones para añadir/retirar monedas del portfolio.
+![Login](docs/screenshots/login.png)
 
-- `Portfolio` (`Portfolio.jsx`)
+## Estructura del proyecto
 
-  - Visualiza las monedas guardadas, permite actualizar cantidades, eliminar monedas y vaciar portfolio. Sincroniza con el backend mediante `PortfolioProvider`.
+```
+RTC-Proyecto-Final-Coinhub/
+├── backend/    # API Node + Express + TypeScript + MongoDB
+├── frontend/   # SPA React + TypeScript + Vite
+├── docker-compose.yml
+└── insomnia/   # Colección de requests de ejemplo para probar la API
+```
 
-- `Profile` (`Profile.jsx`)
+Documentación específica de cada parte:
 
-  - Edición de datos personales (username, wallet), subida de avatar (form-data), cambio de contraseña, eliminación de cuenta con confirmación y restricciones según rol.
-
-- `Auth` (`Login.jsx`, `Register.jsx`)
-
-  - Formularios de login/registro; se integran con `AuthProvider` para gestionar token y estado de sesión.
-
-- `Posts` (foro)
-
-  - `PostsList.jsx` — listado paginado de posts con botón para crear nuevo.
-  - `PostDetail.jsx` — muestra post, imagen, autor, fecha, like/unlike y sección de comentarios (`CommentsList`, `CommentForm`, `CommentItem`).
-  - `PostForm.jsx` — crear/editar posts, subida opcional de imagen (enviada como buffer al backend que la sube a Cloudinary).
-
-- `Resources` (repositorio de recursos)
-
-  - `ResourcesList.jsx` — listado de recursos con links para abrir/descargar (proxy del backend) y un widget `TradingViewWidget` cargado de forma lazy.
-  - `ResourceDetail.jsx` — detalle del recurso con permisos de edición/eliminación para owner/admin.
-  - `ResourceForm.jsx` — subir/editar recurso; al crear el archivo es obligatorio y se envía como `multipart/form-data` al backend.
-
-- `Admin` (`AdminUsers.jsx`)
-  - Panel para gestionar usuarios: listar, paginar, promover/demote y eliminar usuarios. Solo accesible a roles `admin`/`owner`.
-
-Componentes y hooks transversales más importantes
-
-- Providers: `AuthProvider`, `PortfolioProvider`, `ToastProvider`, `ConfirmProvider` (gestión de sesión, portfolio local+sync, toasts y confirmaciones).
-- Hooks: `useCriptos` (fetch + polling, caching), `useNoticias` (fetch noticias), `usePortfolio` (operaciones de cartera).
-- Componentes reutilizables: `CoinCard`, `SearchForm`, `WorldClocks`, `LikeButton`, `Toast`, `Confirm`, `BaseButton` y `TradingViewWidget` (lazy-loaded).
-- Estilos: variables globales en `src/styles/variables.css` (colores, spacings, radii) y CSS Modules por componente.
-
----
-
-**Backend**
+- [`backend/README.md`](../RTC-Proyecto-Final-Coinhub/backend/README.md) — API, endpoints, autenticación, seguridad, tests.
+- [`frontend/README.md`](../RTC-Proyecto-Final-Coinhub/frontend/README.md) — páginas, componentes, tema claro/oscuro, PWA, tests.
 
 ## Despliegue
 
-- URL (producción): https://coin-hub-backend.vercel.app/
-- Health check: `GET /api/health`
+- Frontend (producción): https://coin-hub-frontend-tau.vercel.app/
+- Backend (producción): https://coin-hub-backend.vercel.app/ — health check en `/api/health`
 
-## Autenticación
+## Arranque rápido (local)
 
-Las rutas protegidas requieren header:
+Requiere Node.js 22+, una instancia de MongoDB (Atlas o local) y credenciales de Cloudinary (solo necesarias para subir imágenes).
 
-- `Authorization: Bearer <token>`
+```bash
+npm run install:all   # instala backend y frontend
+npm run dev            # levanta ambos en paralelo (backend :5000, frontend :5173)
+```
 
-El token se obtiene en `POST /api/auth/login` o `POST /api/auth/register`.
+Cada paquete necesita su propio `.env` — ver el detalle de variables en el README de `backend/` y `frontend/`.
 
-## Endpoints
+### Alternativa: Docker
 
-Base path: todos los endpoints cuelgan de `/api`.
+```bash
+cd RTC-Proyecto-Final-Coinhub
+docker-compose up --build
+```
 
-### Auth (`/api/auth`)
+Levanta MongoDB, backend (puerto 5000) y frontend (puerto 8080) en un solo comando. La subida de imágenes no funcionará sin credenciales reales de Cloudinary en `docker-compose.yml`.
 
-| Método | Ruta                 | Auth | Rol              | Body | Resumen                                      |
-| ------ | -------------------- | ---- | ---------------- | ---- | -------------------------------------------- |
-| POST   | `/api/auth/register` | No   | —                | JSON | Registra usuario y devuelve `token` + `user` |
-| POST   | `/api/auth/login`    | No   | —                | JSON | Login y devuelve `token` + `user`            |
-| GET    | `/api/auth/me`       | Sí   | user/admin/owner | —    | Devuelve el usuario asociado al token        |
+## Stack tecnológico
 
-**Body register (JSON):** `username`, `email`, `password`, `wallet_address` (opcional)
+**Frontend:** React 19, TypeScript, Vite, React Router, TanStack Query, CSS Modules, Vitest + Testing Library, Playwright (E2E), `vite-plugin-pwa`.
 
-**Body login (JSON):** `email`, `password`
+**Backend:** Node.js, Express 5, TypeScript, MongoDB + Mongoose, Zod, JWT (cookies httpOnly), Cloudinary, Pino (logging estructurado), Vitest + Supertest + `mongodb-memory-server`.
 
----
+## Testing y CI
 
-### Users (`/api/users`)
+Ambos paquetes tienen suite de tests (Vitest) y typecheck limpio. El repositorio incluye un workflow de GitHub Actions (`.github/workflows/ci.yml`) que en cada push/PR a `main`/`develop` ejecuta, en paralelo para frontend y backend: `typecheck → lint → build → test`. El detalle de qué cubre cada suite está en el README de cada paquete.
 
-| Método | Ruta                          | Auth | Rol              | Body                         | Resumen                                                          |
-| ------ | ----------------------------- | ---- | ---------------- | ---------------------------- | ---------------------------------------------------------------- |
-| GET    | `/api/users/profile`          | Sí   | user/admin/owner | —                            | Obtiene el perfil del usuario autenticado                        |
-| PUT    | `/api/users/profile`          | Sí   | user/admin/owner | JSON o `multipart/form-data` | Actualiza perfil (username/email/wallet y avatar)                |
-| PUT    | `/api/users/profile/password` | Sí   | user/admin/owner | JSON                         | Cambia contraseña (revoca sesiones incrementando `tokenVersion`) |
-| DELETE | `/api/users/profile`          | Sí   | user/admin       | JSON                         | Auto-elimina cuenta y contenido (owner **no** puede)             |
-| GET    | `/api/users`                  | Sí   | admin/owner      | —                            | Lista usuarios (paginado). Query: `page`, `limit`, `role`        |
-| GET    | `/api/users/:userId`          | No   | —                | —                            | Obtiene un usuario público (sin email)                           |
-| PUT    | `/api/users/:userId/role`     | Sí   | admin/owner      | JSON                         | Cambia rol del usuario (solo `user`/`admin`)                     |
-| DELETE | `/api/users/:userId`          | Sí   | admin/owner      | —                            | Elimina un usuario y su contenido (con restricciones por rol)    |
+## Documentación de la API
 
-**Notas de permisos importantes (según implementación):**
+El backend expone documentación interactiva de la API generada desde los esquemas Zod en `/api-docs` (Swagger UI) — ver detalles en `backend/README.md`. También se incluye una colección de Insomnia (`insomnia/insomnia_collection.json`) con requests preconfigurados para todos los módulos, útil para explorar y probar la API sin escribir peticiones a mano.
 
-- No puedes eliminar tu propio usuario desde el endpoint admin (`DELETE /api/users/:userId`).
-- Un `admin` (y un `user`) **sí puede** auto-eliminar su cuenta desde `DELETE /api/users/profile` aportando `currentPassword`.
-- No se puede eliminar a un `owner`.
-- Solo `owner` puede eliminar a un `admin`.
-- Solo `owner` puede despromocionar a un `admin` a `user`.
-- `owner` no puede auto-eliminar su cuenta desde perfil.
+## Seguridad (resumen)
 
-**Body change password (JSON):** `currentPassword`, `newPassword` (mín. 16), `confirmPassword`
+- Sesión en cookies `httpOnly` (access token de 15 min + refresh token de 7 días, rotado), no en `localStorage`.
+- Protección CSRF mediante cabecera custom obligatoria en peticiones que mutan estado.
+- `helmet` para cabeceras HTTP de seguridad y `express-rate-limit` (límite reforzado en login/registro).
+- Revocación de sesiones vía `tokenVersion` al cambiar contraseña.
 
-**Body delete account (JSON):** `currentPassword`
-
-**Body change role (JSON):** `role` (`user` o `admin`)
-
----
-
-### Posts (`/api/posts`)
-
-| Método | Ruta                      | Auth | Rol                          | Body                                                  | Resumen                                                              |
-| ------ | ------------------------- | ---- | ---------------------------- | ----------------------------------------------------- | -------------------------------------------------------------------- |
-| GET    | `/api/posts`              | No   | —                            | —                                                     | Lista posts (paginado). Query: `page`, `limit`, `category`, `userId` |
-| GET    | `/api/posts/:postId`      | No   | —                            | —                                                     | Obtiene un post                                                      |
-| POST   | `/api/posts`              | Sí   | user/admin/owner             | `multipart/form-data` (campo `image` opcional) o JSON | Crea post                                                            |
-| PUT    | `/api/posts/:postId`      | Sí   | owner del post o admin/owner | `multipart/form-data` (campo `image` opcional) o JSON | Edita post                                                           |
-| DELETE | `/api/posts/:postId`      | Sí   | owner del post o admin/owner | —                                                     | Elimina post                                                         |
-| POST   | `/api/posts/:postId/like` | Sí   | user/admin/owner             | —                                                     | Alterna like/unlike                                                  |
-
-**Body post (JSON):** `title`, `content`, `category` (valores: `análisis`, `tutorial`, `experiencia`, `pregunta`)
-
----
-
-### Comments (`/api/comments`)
-
-| Método | Ruta                       | Auth | Rol                          | Body | Resumen                                                       |
-| ------ | -------------------------- | ---- | ---------------------------- | ---- | ------------------------------------------------------------- |
-| GET    | `/api/comments`            | No   | —                            | —    | Lista comentarios. Query: `postId`, `userId`, `page`, `limit` |
-| GET    | `/api/comments/:commentId` | No   | —                            | —    | Obtiene un comentario                                         |
-| POST   | `/api/comments`            | Sí   | user/admin/owner             | JSON | Crea comentario                                               |
-| PUT    | `/api/comments/:commentId` | Sí   | owner del comentario         | JSON | Edita comentario                                              |
-| DELETE | `/api/comments/:commentId` | Sí   | owner del comentario o admin | —    | Elimina comentario                                            |
-
-**Body create/update (JSON):** `content`
-
-**Body create (JSON adicional):** `postId`
-
----
-
-### Resources (`/api/resources`)
-
-| Método | Ruta                                  | Auth | Rol                             | Body                                             | Resumen                                                              |
-| ------ | ------------------------------------- | ---- | ------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------- |
-| GET    | `/api/resources`                      | No   | —                               | —                                                | Lista recursos. Query: `page`, `limit`, `type`, `category`, `userId` |
-| GET    | `/api/resources/:resourceId`          | No   | —                               | —                                                | Obtiene un recurso                                                   |
-| GET    | `/api/resources/:resourceId/open`     | No   | —                               | —                                                | Devuelve el archivo en streaming (proxy)                             |
-| GET    | `/api/resources/:resourceId/download` | No   | —                               | —                                                | Fuerza descarga del archivo (proxy)                                  |
-| POST   | `/api/resources`                      | Sí   | user/admin/owner                | `multipart/form-data` (campo `file` obligatorio) | Crea recurso                                                         |
-| PUT    | `/api/resources/:resourceId`          | Sí   | owner del recurso o admin/owner | `multipart/form-data` (campo `file` opcional)    | Edita recurso                                                        |
-| DELETE | `/api/resources/:resourceId`          | Sí   | owner del recurso o admin/owner | —                                                | Elimina recurso                                                      |
-
-**Body resource (form-data):**
-
-- `title`
-- `description`
-- `type` (valores: `pdf`, `image`, `guide`)
-- `category` (valores: `análisis-técnico`, `fundamentos`, `trading`, `seguridad`, `defi`, `otro`)
-- `file` (obligatorio al crear)
-
----
-
-### Portfolio (`/api/portfolio`)
-
-| Método | Ruta                           | Auth | Rol              | Body | Resumen                                      |
-| ------ | ------------------------------ | ---- | ---------------- | ---- | -------------------------------------------- |
-| GET    | `/api/portfolio`               | Sí   | user/admin/owner | —    | Obtiene items del portfolio                  |
-| PUT    | `/api/portfolio`               | Sí   | user/admin/owner | JSON | Reemplaza portfolio (dedup por símbolo)      |
-| POST   | `/api/portfolio/items`         | Sí   | user/admin/owner | JSON | Añade item (si no existe)                    |
-| PUT    | `/api/portfolio/items/:itemId` | Sí   | user/admin/owner | JSON | Actualiza item por id                        |
-| DELETE | `/api/portfolio/items/:itemId` | Sí   | user/admin/owner | —    | Elimina item por id                          |
-| POST   | `/api/portfolio/import`        | Sí   | user/admin/owner | JSON | Importa items (merge y recalcula `avgPrice`) |
-
-**Body PUT /api/portfolio (JSON):** `{ items: Array<{ symbol, amount, avgPrice, notes?, metadata? }> }`
-
-Propósito: centralizar la lógica de persistencia, autenticación, autorización, subida de archivos y operaciones relacionales entre colecciones, para que el frontend pueda ser principalmente declarativo y enfocado a UX.
-
-Estructura y responsabilidades (ficheros clave)
-
-- `server.js` — orquesta la API: carga `.env`, conecta con MongoDB (`config/db.js`), configura CORS según `FRONTEND_URL(S)` y monta routers.
-- `config/cloudinary.js` — utilidades para subir/eliminar con Cloudinary (upload_stream sobre buffers y opciones por tipo de recurso).
-- `middleware/auth.js` — valida JWT, reconstruye `req.user` y `req.userId`, y comprueba `tokenVersion` para revocar tokens si es necesario.
-- `middleware/upload.js` — configura `multer` (memoryStorage), valida MIME types (imágenes y pdf) y limita tamaño a 10MB.
-
-Modelos principales (`backend/models`)
-
-- `User` — `username`, `email`, `password` (hash), `avatar`, `wallet_address`, `role` (user|admin|owner), `tokenVersion`, timestamps. Roles usados para control de permisos en rutas sensibles.
-- `Post` — `userId` (ref User), `title`, `content`, `category`, `image` (Cloudinary URL), `likes` (array de User.\_id), timestamps, índices para búsquedas/paginación.
-- `Comment` — `postId` (ref Post), `userId` (ref User), `content`, timestamps.
-- `Resource` — `userId` (ref User), `title`, `description`, `type` (pdf|image|guide), `fileUrl` (Cloudinary), `originalName`, `category`.
-- `Portfolio` — documento único por `userId` con `items` (symbol, amount, avgPrice, metadata). Diseñado para sincronizarse con el cliente sin duplicar datos.
-
-Rutas y lógica
-
-- `auth` — registro (bcrypt), login (JWT con payload {userId, role, tokenVersion}), `me` para recuperar usuario desde token.
-- `posts` — CRUD con subida de imagen; control de ownership y roles para editar/eliminar; like/unlike toggle.
-- `comments` — CRUD con validación de existencia de post y permisos de edición/eliminación.
-- `resources` — CRUD con subida a Cloudinary; endpoints adicionales `open` (stream para visualizar) y `download` (forzar descarga) que actúan como proxy.
-- `users` — endpoints de administración (listar, promover, demover, eliminar) y endpoints para actualizar perfil (incluye subida de imagen desde frontend).
-- `portfolio` — obtener, actualizar, añadir/quitar items, importar lista entera desde cliente con deduplicado y recálculo de `avgPrice`.
-
-Flujos típicos
-
-- Registro/Login: el backend devuelve JWT; el frontend lo guarda y lo usa en `Authorization: Bearer`.
-- Subida de imagen/recurso: frontend envía multipart/form-data → backend recibe buffer vía `multer` → `cloudinary.uploader.upload_stream` → guarda `secure_url` en documento.
-- Operaciones protegidas: rutas usan `auth` middleware; además se comprueba `req.userId` vs `resource.userId` para modificaciones.
-
-Seed y generación de datos
-
-- `backend/seed/seed.js` lee CSVs en `backend/seed/data` (`users.csv`, `posts.csv`, `comments.csv`, `resources.csv`) y crea registros enlazando IDs para preservar relaciones (users ↔ posts ↔ comments).
-
-Consideraciones de seguridad y buenas prácticas
-
-- Validaciones en rutas con `express-validator` (emails, formatos, límites).
-- Límite de subida: 10MB y control estricto de MIME types.
-- Revocación de tokens mediante `tokenVersion` y verificación de token válido en `middleware/auth.js`.
-- Eliminación de archivos en Cloudinary al actualizar/eliminar recursos.
-
----
-
-**Insomnia**
-
-Se incluye `insomnia/insomnia_collection.json` con requests preconfigurados (auth, posts, resources, comments, users, portfolio). Útil para validar flujos completos y compartir escenarios de prueba con el corrector.
-
----
-
-Correcciones:
-
--Doble “recarga”/doble GET al crear post (Foro)
-
-Quité StrictMode para evitar el doble montaje/useEffect en desarrollo que disparaba dos peticiones seguidas. Memoicé el valor del ToastContext para que al mostrar un toast no cambie la referencia de toast y no se vuelvan a ejecutar efectos de carga.(Archivos: ToastProvider.jsx, main.jsx)
-
--Error “Credenciales inválidas” que se quedaba al navegar
-
-Añadí una función para limpiar el error global de auth y se ejecuta al entrar en Login/Registro, evitando que un error anterior persista en pantallas nuevas. (Archivos: AuthContext.jsx, Login.jsx, Register.jsx)
-
-“Fetch error” al subir recursos (entornos con puertos/orígenes distintos)
-
-He hecho que, si el navegador bloquea la petición (CORS) o el backend no responde y fetch falla, la app muestre un mensaje claro y accionable en vez de un “Fetch error” genérico, para que el problema se entienda.
-Backend: CORS más tolerante en desarrollo para localhost/127.0.0.1 con cualquier puerto (producción sigue estricta).
-(Archivos: server.js, api.js)
-
-“Brinco” al navegar
-
-Lo solucioné reservando siempre el espacio del scrollbar con scrollbar-gutter: stable (y un fallback overflow-y: scroll), para que el ancho no cambie.(Archivo: globals.css)
-
-Falta un botón “Volver” (Posts/Recursos)
-
-Añadí un botón “Volver” en las páginas de detalle que usa navigate(-1) para volver al punto anterior; si no hay historial, vuelve a la lista (/posts o /resources).
-(Archivos: PostDetail.jsx, ResourceDetail.jsx, PostDetail.module.css)
-
-Confusión de roles en el mensaje de “Eliminar cuenta”
-
-He modificado el texto para que tenga coherencia y he cambiado la regla: admin ahora sí puede auto-eliminar su cuenta desde Perfil con contraseña; owner sigue bloqueado. (Archivos: Profile.jsx, users.js)
-
-Rol moderador → Era un rol obsoleto, lo he eliminado.
-
-Correcciones 2:
-
-README independiente para backend y frontend + links de despliegue presentes en la documentación.
-
-Mejora del README del backend metiendo los endpoints en tablas y explicando qué necesita autenticación y qué rol hace falta.
-
-Reordenar el backend creando la carpeta api/ con routes/, controllers/ y models/.
-
-Refactorización del backend para que las rutas solo definan endpoints/middlewares y deriven la lógica a controladores, que a su vez trabajan con los modelos.
+El detalle completo está en `backend/README.md`.

@@ -17,6 +17,13 @@
   border-bottom: 2px solid rgb(246 166 35 / 30%);
 }
 
+.cryptoSort {
+  display: flex;
+  margin-bottom: var(--spacing-lg);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .cryptoHeader h1 {
   text-align: left;
   margin-bottom: 0.25rem;
